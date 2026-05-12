@@ -35,10 +35,15 @@ const postSchema = new Schema<IPost>(
   { timestamps: true },
 );
 
-postSchema.pre('save', function (next: mongoose.CallbackWithoutResultAndOptionalError) {
+postSchema.pre('save', async function () {
   if (!this.isModified('title') && !this.isNew) {
-    return next();
+    return;
   }
+
+  const base = slugify(this.title, { lower: true, strict: true });
+  const suffix = nanoid(6);
+  this.slug = `${base}-${suffix}`;
+});
 
   const base =
     slugify(String(this.title), {
