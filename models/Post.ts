@@ -16,44 +16,18 @@ export type PostModel = Model<IPost>;
 const postSchema = new Schema<IPost>(
   {
     title: { type: String, required: true, trim: true },
-    // Always set in `pre('save')`; not `required` here because Mongoose validates before save hooks.
-    slug: {
-      type: String,
-      unique: true,
-      lowercase: true,
-      trim: true,
-    },
+    slug: { type: String, unique: true, lowercase: true, trim: true },
     content: { type: String, required: true, default: '' },
-    author: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-      index: true,
-    },
+    author: { type: Schema.Types.ObjectId, ref: 'User', required: true, index: true },
     published: { type: Boolean, default: false, index: true },
   },
   { timestamps: true },
 );
 
 postSchema.pre('save', async function () {
-  if (!this.isModified('title') && !this.isNew) {
-    return;
-  }
-
-  const base = slugify(this.title, { lower: true, strict: true });
-  const suffix = nanoid(6);
-  this.slug = `${base}-${suffix}`;
-});
-
-  const base =
-    slugify(String(this.title), {
-      lower: true,
-      strict: true,
-      trim: true,
-    }) || 'post';
-
+  if (!this.isModified('title') && !this.isNew) return;
+  const base = slugify(this.title as string, { lower: true, strict: true, trim: true }) || 'post';
   this.slug = `${base}-${nanoid(6)}`;
-  next();
 });
 
 export const Post: PostModel =
