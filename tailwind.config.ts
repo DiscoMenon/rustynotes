@@ -11,6 +11,11 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        accent: "var(--accent)",
+      },
+      fontFamily: {
+        serif: ["var(--font-lora)", "Georgia", "serif"],
+        display: ["var(--font-cinzel)", "Palatino Linotype", "Palatino", "serif"],
       },
     },
   },
