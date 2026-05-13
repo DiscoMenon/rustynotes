@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Cinzel, Lora } from "next/font/google";
 import "@/styles/globals.css";
+import { Navbar } from "@/components/navbar";
+import { AuthProvider } from "@/components/providers/auth-provider";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -27,7 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${lora.variable} ${cinzel.variable} ${lora.className}`}>
-        {children}
+        <AuthProvider>
+          <Navbar />
+          <main>{children}</main>
+        </AuthProvider>
       </body>
     </html>
   );

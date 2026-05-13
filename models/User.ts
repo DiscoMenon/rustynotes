@@ -5,6 +5,10 @@ export interface IUser {
   name: string;
   passwordHash?: string;
   image?: string;
+  followers: mongoose.Types.ObjectId[];
+  following: mongoose.Types.ObjectId[];
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export type UserDocument = mongoose.HydratedDocument<IUser>;
@@ -22,6 +26,8 @@ const userSchema = new Schema<IUser>(
     name: { type: String, required: true, trim: true },
     passwordHash: { type: String, select: false },
     image: { type: String },
+    followers: { type: [{ type: Schema.Types.ObjectId, ref: 'User' }], default: [] },
+    following: { type: [{ type: Schema.Types.ObjectId, ref: 'User' }], default: [] },
   },
   { timestamps: true },
 );

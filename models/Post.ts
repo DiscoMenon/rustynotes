@@ -8,6 +8,8 @@ export interface IPost {
   content: string;
   author: mongoose.Types.ObjectId;
   published: boolean;
+  tags: string[];
+  likes: mongoose.Types.ObjectId[];
 }
 
 export type PostDocument = mongoose.HydratedDocument<IPost>;
@@ -20,6 +22,8 @@ const postSchema = new Schema<IPost>(
     content: { type: String, required: true, default: '' },
     author: { type: Schema.Types.ObjectId, ref: 'User', required: true, index: true },
     published: { type: Boolean, default: false, index: true },
+    tags: { type: [String], default: [], index: true },
+    likes: { type: [{ type: Schema.Types.ObjectId, ref: 'User' }], default: [] },
   },
   { timestamps: true },
 );

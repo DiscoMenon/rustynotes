@@ -274,4 +274,88 @@
     cursor: not-allowed;
     filter: grayscale(0.15);
   }
+
+  /* Reusable wax stamp for <Button variant="primary"> — inline, not full-width */
+  .wax-stamp-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-cinzel), "Palatino Linotype", Palatino, serif;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-weight: 600;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    color: #f8ecd8;
+    text-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.35),
+      0 -1px 0 rgba(255, 220, 190, 0.25);
+    background:
+      radial-gradient(ellipse 120% 85% at 28% 22%, rgba(255, 140, 110, 0.35) 0%, transparent 52%),
+      radial-gradient(ellipse 90% 80% at 78% 88%, rgba(40, 12, 8, 0.35) 0%, transparent 48%),
+      linear-gradient(168deg, #b3483c 0%, #8b3a2a 38%, #6e2e22 72%, #5a261c 100%);
+    box-shadow:
+      0 6px 14px rgba(59, 42, 26, 0.38),
+      0 2px 4px rgba(0, 0, 0, 0.22),
+      inset 0 2px 1px rgba(255, 190, 165, 0.35),
+      inset 0 -6px 14px rgba(30, 10, 6, 0.45);
+    transition:
+      transform 0.16s ease,
+      filter 0.16s ease,
+      box-shadow 0.16s ease;
+  }
+
+  .wax-stamp-button::after {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border-radius: inherit;
+    border: 1px solid rgba(40, 14, 10, 0.35);
+    pointer-events: none;
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .wax-stamp-button:hover:not(:disabled) {
+    transform: scale(1.015);
+    filter: brightness(1.06);
+    box-shadow:
+      0 8px 18px rgba(59, 42, 26, 0.42),
+      0 2px 4px rgba(0, 0, 0, 0.22),
+      inset 0 2px 1px rgba(255, 200, 175, 0.38),
+      inset 0 -6px 14px rgba(30, 10, 6, 0.45);
+  }
+
+  .wax-stamp-button:active:not(:disabled) {
+    transform: scale(0.985);
+    filter: brightness(0.96);
+    box-shadow:
+      0 3px 8px rgba(59, 42, 26, 0.35),
+      inset 0 4px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  .wax-stamp-button:disabled {
+    opacity: 0.62;
+    cursor: not-allowed;
+    filter: grayscale(0.15);
+  }
+
+  .wax-stamp-button-sm {
+    font-size: 0.65rem;
+    padding: 0.55rem 1rem;
+    letter-spacing: 0.18em;
+  }
+
+  .wax-stamp-button-md {
+    font-size: 0.72rem;
+    padding: 0.75rem 1.35rem;
+  }
+
+  .wax-stamp-button-lg {
+    font-size: 0.78rem;
+    padding: 0.95rem 1.75rem;
+    letter-spacing: 0.24em;
+  }
 }
