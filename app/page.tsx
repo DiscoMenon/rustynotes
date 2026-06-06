@@ -12,7 +12,7 @@ export default async function HomePage() {
     .lean();
 
   const allTagDocs = await Post.find({ published: true }).select('tags').lean();
-  const allTags = [...new Set(allTagDocs.flatMap((p) => p.tags))];
+  const allTags = Array.from(new Set(allTagDocs.flatMap((p) => p.tags as string[])));
 
   const posts = JSON.parse(JSON.stringify(rawPosts));
 

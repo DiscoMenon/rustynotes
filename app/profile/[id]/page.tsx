@@ -12,10 +12,10 @@ export default async function ProfilePage({ params }: { params: { id: string } }
   const session = await getServerSession(authOptions);
   await connectMongoDB();
 
-  const rawUser = await User.findById(params.id).lean() as Record<string, unknown>;
+  const rawUser = await User.findById(params.id).lean() as unknown as Record<string, unknown>;
   if (!rawUser) notFound();
 
-  const rawPosts = await Post.find({ author: rawUser._id, published: true })
+  const rawPosts = await Post.find({ author: rawUser._id as string, published: true })
     .sort({ _id: -1 })
     .populate('author', 'name email image')
     .lean();

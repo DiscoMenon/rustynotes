@@ -94,7 +94,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
       <div className="border-t-2 border-[#c9a96e] my-10" />
 
       {/* Like button */}
-      <LikeButton postId={post._id} likes={post.likes} slug={params.slug} />
+      <LikeButton likes={post.likes} slug={params.slug} />
 
       {/* Comments */}
       <div className="mt-10">
