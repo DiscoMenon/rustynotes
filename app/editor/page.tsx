@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { PenNib } from '@phosphor-icons/react';
 
 export default function EditorPage() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
   const editSlug = searchParams.get('slug');
