@@ -12,7 +12,7 @@ export default async function ProfilePage({ params }: { params: { id: string } }
   const session = await getServerSession(authOptions);
   await connectMongoDB();
 
-  const rawUser = await User.findById(params.id).lean() as any;
+  const rawUser = await User.findById(params.id).lean() as Record<string, unknown>;
   if (!rawUser) notFound();
 
   const rawPosts = await Post.find({ author: rawUser._id, published: true })
@@ -25,7 +25,7 @@ export default async function ProfilePage({ params }: { params: { id: string } }
 
   const isOwn = session?.user?.id === params.id;
   const isFollowing = session?.user?.id
-    ? (rawUser.followers ?? []).map(String).includes(session.user.id)
+    ? ((rawUser.followers as string[] | undefined) ?? []).map(String).includes(session.user.id)
     : false;
 
   return (
