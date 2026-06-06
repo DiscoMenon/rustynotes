@@ -36,7 +36,8 @@ export default function EditorPage() {
 
   async function save(publish = false) {
     if (!title.trim()) return alert('A scroll must have a title.');
-    publish ? setPublishing(true) : setSaving(true);
+    if (publish) setPublishing(true);
+else setSaving(true);
 
     const body = {
       title,

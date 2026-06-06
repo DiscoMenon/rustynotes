@@ -1,6 +1,5 @@
 import { connectMongoDB } from '@/lib/mongodb';
 import { Post } from '@/models/Post';
-import { Comment } from '@/models/Comment';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';

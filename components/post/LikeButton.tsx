@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import { Heart } from '@phosphor-icons/react';
 import { useRouter } from 'next/navigation';
 
-export default function LikeButton({ postId, likes, slug }: { postId: string; likes: string[]; slug: string }) {
+export default function LikeButton({ likes, slug }: { likes: string[]; slug: string }){
   const { data: session } = useSession();
   const router = useRouter();
   const [likeList, setLikeList] = useState<string[]>(likes);
